@@ -1,0 +1,15 @@
+{
+  "name": "aston-omni-core",
+  "version": "7.0.1",
+  "private": true,
+  "description": "ASTON OS Omni-Matrix Apex - Edge engine on Cloudflare Workers",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute aston-omni-primary --remote --file=schema.sql && wrangler d1 execute aston-omni-backup --remote --file=schema.sql",
+    "queue:create": "wrangler queues create aston-global-queue"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
