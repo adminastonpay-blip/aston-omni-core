@@ -1,0 +1,50 @@
+name = "aston-omni-core"
+main = "src/index.js"
+compatibility_date = "2026-03-01"
+compatibility_flags = ["nodejs_compat"]
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "ASTON_DB"
+database_name = "aston-omni-primary"
+database_id = "51312792-29f1-4930-a185-790fa330fae8"
+
+[[d1_databases]]
+binding = "ASTON_DB_BACKUP"
+database_name = "aston-omni-backup"
+database_id = "5cc9354d-0672-40e3-a7d5-6f2741269dda"
+
+[[r2_buckets]]
+binding = "ASTON_R2"
+bucket_name = "aston-omni-datalake"
+
+[[kv_namespaces]]
+binding = "ASTON_KV"
+id = "f0f5b71491c34b80ad8d7365acc6336e"
+
+[[queues.producers]]
+binding = "EVENTS"
+queue = "aston-global-queue"
+
+[[queues.consumers]]
+queue = "aston-global-queue"
+
+# [[vectorize]]
+# binding = "VECTORIZE"
+# index_name = "aston-omni-index"
+
+[durable_objects]
+bindings = [
+  { name = "ASTON_SESSION", class_name = "AstonSession" },
+  { name = "ASTON_RATE_LIMITER", class_name = "AstonRateLimiter" },
+  { name = "ASTON_LEDGER_LOCK", class_name = "AstonLedgerLock" }
+]
+
+[[migrations]]
+tag = "v1-extreme"
+new_classes = ["AstonSession", "AstonRateLimiter", "AstonLedgerLock"]
+
+[triggers]
+crons = ["0 * * * *"]
