@@ -31,19 +31,9 @@ queue = "aston-global-queue"
 [[queues.consumers]]
 queue = "aston-global-queue"
 
-[[queues.consumers]]
-queue = "aston-global-queue"
-
 # [[vectorize]]
 # binding = "VECTORIZE"
 # index_name = "aston-omni-index"
-
-[durable_objects]
-bindings = [
-  { name = "ASTON_SESSION", class_name = "AstonSession" },
-  { name = "ASTON_RATE_LIMITER", class_name = "AstonRateLimiter" },
-  { name = "ASTON_LEDGER_LOCK", class_name = "AstonLedgerLock" }
-]
 
 [durable_objects]
 bindings = [
