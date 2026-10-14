@@ -31,10 +31,6 @@ queue = "aston-global-queue"
 [[queues.consumers]]
 queue = "aston-global-queue"
 
-# [[vectorize]]
-# binding = "VECTORIZE"
-# index_name = "aston-omni-index"
-
 [durable_objects]
 bindings = [
   { name = "ASTON_SESSION", class_name = "AstonSession" },
@@ -44,7 +40,7 @@ bindings = [
 
 [[migrations]]
 tag = "v1-extreme"
-new_classes = ["AstonSession", "AstonRateLimiter", "AstonLedgerLock"]
+new_sqlite_classes = ["AstonSession", "AstonRateLimiter", "AstonLedgerLock"]
 
 [triggers]
 crons = ["0 * * * *"]
