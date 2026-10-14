@@ -3,15 +3,9 @@ main = "src/index.js"
 compatibility_date = "2026-03-01"
 compatibility_flags = ["nodejs_compat"]
 
-# -----------------------------------------------------------------
-# 1. MOTOR DE INTELIGENCIA ARTIFICIAL (Workers AI)
-# -----------------------------------------------------------------
 [ai]
 binding = "AI"
 
-# -----------------------------------------------------------------
-# 2. BASES DE DATOS DISTRIBUIDAS (Cloudflare D1)
-# -----------------------------------------------------------------
 [[d1_databases]]
 binding = "ASTON_DB"
 database_name = "aston-omni-primary"
@@ -22,23 +16,14 @@ binding = "ASTON_DB_BACKUP"
 database_name = "aston-omni-backup"
 database_id = "5cc9354d-0672-40e3-a7d5-6f2741269dda"
 
-# -----------------------------------------------------------------
-# 3. ALMACENAMIENTO DE OBJETOS Y DATALAKE (Cloudflare R2)
-# -----------------------------------------------------------------
 [[r2_buckets]]
 binding = "ASTON_R2"
 bucket_name = "aston-omni-datalake"
 
-# -----------------------------------------------------------------
-# 4. ALMACENAMIENTO CLAVE-VALOR Y SESIONES (Cloudflare KV)
-# -----------------------------------------------------------------
 [[kv_namespaces]]
 binding = "ASTON_KV"
 id = "f0f5b71491c34b80ad8d7365acc6336e"
 
-# -----------------------------------------------------------------
-# 5. MENSAJERÍA Y ASINCRONÍA (Cloudflare Queues)
-# -----------------------------------------------------------------
 [[queues.producers]]
 binding = "EVENTS"
 queue = "aston-global-queue"
@@ -46,16 +31,10 @@ queue = "aston-global-queue"
 [[queues.consumers]]
 queue = "aston-global-queue"
 
-# -----------------------------------------------------------------
-# 6. BÚSQUEDA VECTORIAL (Vectorize) - Reservado/Inactivo
-# -----------------------------------------------------------------
 # [[vectorize]]
 # binding = "VECTORIZE"
 # index_name = "aston-omni-index"
 
-# -----------------------------------------------------------------
-# 7. ESTADOS Y PERSISTENCIA EN TIEMPO REAL (Durable Objects)
-# -----------------------------------------------------------------
 [durable_objects]
 bindings = [
   { name = "ASTON_SESSION", class_name = "AstonSession" },
@@ -67,8 +46,5 @@ bindings = [
 tag = "v1-extreme"
 new_classes = ["AstonSession", "AstonRateLimiter", "AstonLedgerLock"]
 
-# -----------------------------------------------------------------
-# 8. ACTIVADORES AUTOMÁTICOS (Cron Triggers)
-# -----------------------------------------------------------------
 [triggers]
 crons = ["0 * * * *"]
