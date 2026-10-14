@@ -31,16 +31,23 @@ queue = "aston-global-queue"
 [[queues.consumers]]
 queue = "aston-global-queue"
 
+# Vectorize: crear el índice antes de descomentar
+# npx wrangler vectorize create aston-omni-index --dimensions=768 --metric=cosine
 # [[vectorize]]
 # binding = "VECTORIZE"
 # index_name = "aston-omni-index"
 
-[durable_objects]
-bindings = [
-  { name = "ASTON_SESSION", class_name = "AstonSession" },
-  { name = "ASTON_RATE_LIMITER", class_name = "AstonRateLimiter" },
-  { name = "ASTON_LEDGER_LOCK", class_name = "AstonLedgerLock" }
-]
+[[durable_objects.bindings]]
+name = "ASTON_SESSION"
+class_name = "AstonSession"
+
+[[durable_objects.bindings]]
+name = "ASTON_RATE_LIMITER"
+class_name = "AstonRateLimiter"
+
+[[durable_objects.bindings]]
+name = "ASTON_LEDGER_LOCK"
+class_name = "AstonLedgerLock"
 
 [[migrations]]
 tag = "v1-extreme"
