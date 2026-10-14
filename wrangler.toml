@@ -1,6 +1,7 @@
 name = "aston-omni-core"
 main = "src/index.js"
 compatibility_date = "2026-03-01"
+compatibility_flags = ["nodejs_compat"]
 
 [ai]
 binding = "AI"
@@ -30,13 +31,29 @@ queue = "aston-global-queue"
 [[queues.consumers]]
 queue = "aston-global-queue"
 
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "aston-omni-index"
+
+[durable_objects]
+bindings = [
+  { name = "ASTON_SESSION", class_name = "AstonSession" },
+  { name = "ASTON_RATE_LIMITER", class_name = "AstonRateLimiter" },
+  { name = "ASTON_LEDGER_LOCK", class_name = "AstonLedgerLock" }
+]
+
+[[migrations]]
+tag = "v1-extreme"
+new_classes = ["AstonSession", "AstonRateLimiter", "AstonLedgerLock"]
+
 [triggers]
 crons = ["0 * * * *"]
 
-# Variables opcionales (no secretas):
+# Variables opcionales:
 # [vars]
-# ASTON_ALLOWED_ORIGIN = "https://m1m0d3-ru.myshopify.com"
+# ASTON_ALLOWED_ORIGIN = "*"
 # ASTON_PUBLIC_CHAT = "false"
 #
-# Secreto obligatorio (NO ponerlo aqui):
+# Secretos (NO ponerlos aqui):
 #   npx wrangler secret put ASTON_API_TOKEN
+#   npx wrangler secret put ASTON_JWT_SECRET
