@@ -31,9 +31,18 @@ queue = "aston-global-queue"
 [[queues.consumers]]
 queue = "aston-global-queue"
 
-[[vectorize]]
-binding = "VECTORIZE"
-index_name = "aston-omni-index"
+curl --request POST \
+  --url https://api.cloudflare.com/client/v4/accounts/{account_id}/vectorize/v2/indexes \
+  --header 'Authorization: Bearer TU_TOKEN_DE_CLOUDFLARE' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "config": {
+      "dimensions": 768,
+      "metric": "cosine"
+    },
+    "name": "aston-omni-index",
+    "description": "Aston Omni Matrix Vector Index"
+  }'
 
 [durable_objects]
 bindings = [
