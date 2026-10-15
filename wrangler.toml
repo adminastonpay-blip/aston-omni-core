@@ -27,13 +27,6 @@ bucket_name = "aston-omni-datalake"
 binding = "ASTON_KV"
 id = "f0f5b71491c34b80ad8d7365acc6336e"
 
-[durable_objects]
-bindings = [
-  { name = "ASTON_SESSION", class_name = "AstonSession" },
-  { name = "ASTON_RATE_LIMITER", class_name = "AstonRateLimiter" },
-  { name = "ASTON_LEDGER_LOCK", class_name = "AstonLedgerLock" }
-]
-
 [[migrations]]
 tag = "v1-extreme"
 new_sqlite_classes = ["AstonSession", "AstonRateLimiter", "AstonLedgerLock"]
